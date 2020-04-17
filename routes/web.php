@@ -28,4 +28,6 @@ Route::post('/jadwal/edit', 'JadwalController@edit');
 Route::post('/jadwal/tambahs', 'JadwalController@tambah');
 
 Route::get('/students', 'StudentsController@index');
+Route::get('/students/create', 'StudentsController@create');
+Route::post('/students', 'StudentsController@store');
 Route::get('/students/{student}', 'StudentsController@show');
