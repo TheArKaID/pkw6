@@ -83,8 +83,11 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Student $student)
     {
-        //
+        if(Student::destroy($student->id)==1)
+            return redirect('/students')->with('status', 'Data Mahasiswa Berhasil Dihapus');
+        else
+            return redirect()->back()->withErrors('Gagal Mengapus Data');
     }
 }
