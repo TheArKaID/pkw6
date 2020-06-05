@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Student;
+use Illuminate\Support\Facades\DB;
 
 class StudentsController extends Controller
 {
@@ -101,5 +102,15 @@ class StudentsController extends Controller
             return redirect('/students')->with('status', 'Data Mahasiswa Berhasil Dihapus');
         else
             return redirect()->back()->withErrors('Gagal Mengapus Data');
+    }
+
+    public function search(Request $request)
+    {
+        $cari = $request->search;
+        $post = DB::table('students')
+            ->where('nama','like',"%".$cari."%")
+            ->paginate();
+            
+        return view('students.index',['students' => $post]);
     }
 }
