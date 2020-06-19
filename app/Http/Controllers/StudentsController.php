@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Student;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class StudentsController extends Controller
 {
@@ -112,5 +113,13 @@ class StudentsController extends Controller
             ->paginate();
             
         return view('students.index',['students' => $post]);
+    }
+
+    public function print_all()
+    {
+        $students = Student::all();
+        $pdf = PDF::loadview('students.print_all',['students' => $students]);
+        // return $pdf->download('laporan-pegawai-pdf');
+        return $pdf->stream();
     }
 }

@@ -8,7 +8,12 @@
         <div class="col-6">
             
             <h1 class="mt-10">Daftar Mahasiswa Baru</h1>
-            <a href="/students/create" class="btn btn-primary">Tambah Data</a>
+            <div class="mt-4">
+                <a href="{{ url('/print_all') }}" class="btn btn-primary" target="_blank">
+                    Export all to PDF
+                </a>
+                <a href="/students/create" class="btn btn-primary">Tambah Data</a>
+            </div>
 
             @if (session('status'))
             <div class="alert alert-success">
